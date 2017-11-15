@@ -181,6 +181,23 @@
   </div>
 </template>
 
+<script>
+	var fireballSize = 22;	// размер огнешара
+	var getFireballSpeed = function(left){
+		return left ? 5 : 2;
+	};						// скорость полета огнешара в зависимости от направления (влево дует ветер)
+	var wizardSpeed = 3;	// скорость перемещения мага
+	var wizardWidth = 70;	// толщина пуза мага
+	var getWizardHeight = function(){
+		return 1.337 * wizardWidth;
+	}; 						// рост мага в зависимости от его жирности
+	var getWizardX = function(width){
+		return width / 2;
+	};						// появление мага в начале по координате X
+	var getWizardY = function(height){
+		return height / 3;
+	};						// появление мага в начале по координате Y
+</script>
 <script src="js/game.js"></script>
 
 </body>
