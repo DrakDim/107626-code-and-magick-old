@@ -62,22 +62,22 @@ window.renderStatistics = function (ctx, names, times) {
   var drawHistogram = function (arrayTimes, arrayNames) {
     var step = HISTOGRAM_HEIGHT / (searchMaxValue(arrayTimes) - 0);
     var columnHeight;
-    var columnTextHeight;
+    var columnTimeY;
     var playerColumnColor;
-    var columnY;
-    var columnX;
+    var columnDiagramY;
+    var columnDiagramX;
     for (var i = 0; i < arrayTimes.length; i++) {
       columnHeight = arrayTimes[i] * step;
-      columnTextHeight = STAT_HEIGHT - (columnHeight + 30);
+      columnTimeY = STAT_HEIGHT - (columnHeight + 30);
       playerColumnColor = arrayNames[i] === 'Вы' ? WIN_PLAYER_COLOR : 'rgba(0, 26, 255, ' + randomAlpha() + ')';
 
-      columnY = INITIAL_COLUMN_Y - columnHeight;
-      columnX = INITIAL_COLUMN_X + i * (DISTANCE_BETWEEN_COLUMNS + HISTOGRAM_COLUMN_WIDTH);
+      columnDiagramY = INITIAL_COLUMN_Y - columnHeight;
+      columnDiagramX = INITIAL_COLUMN_X + i * (DISTANCE_BETWEEN_COLUMNS + HISTOGRAM_COLUMN_WIDTH);
 
-      drawColumn(columnX, columnY, HISTOGRAM_COLUMN_WIDTH, columnHeight, playerColumnColor);
+      drawColumn(columnDiagramX, columnDiagramY, HISTOGRAM_COLUMN_WIDTH, columnHeight, playerColumnColor);
 
-      createText(arrayNames[i], columnX, INITIAL_COLUMN_Y + 20, DEFAULT_TEXT_COLOR);
-      createText(Math.round(arrayTimes[i]), columnX, columnTextHeight, DEFAULT_TEXT_COLOR);
+      createText(arrayNames[i], columnDiagramX, INITIAL_COLUMN_Y + 20, DEFAULT_TEXT_COLOR);
+      createText(Math.round(arrayTimes[i]), columnDiagramX, columnTimeY, DEFAULT_TEXT_COLOR);
     }
   };
 
