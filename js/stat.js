@@ -16,6 +16,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   var HISTOGRAM_WINDOW_HEIGHT = 150;
   var HISTOGRAM_COLUMN_WIDTH = 40;
+  var DISTANCE_BETWEEN_COLUMNS = 50;
 
   var WINDOW_STATICTICS_COLOR = 'white';
   var SHADOW_WINDOW_STATISTIC_COLOR = 'rgba(0, 0, 0, 0.7)';
@@ -59,13 +60,15 @@ window.renderStatistics = function (ctx, names, times) {
     var step = HISTOGRAM_WINDOW_HEIGHT / (searchMaxValue(arrayTimes) - 0);
     var up;
     var playerColumnColor;
+    var columnX;
     for (var i = 0; i < arrayTimes.length; i++) {
       up = arrayTimes[i] * step;
       playerColumnColor = arrayNames[i] === 'Вы' ? WIN_PLAYER_COLOR : 'rgba(0, 26, 255, ' + randomAlpha() + ')';
+      columnX = 150 + i * (DISTANCE_BETWEEN_COLUMNS + HISTOGRAM_COLUMN_WIDTH);
 
-      createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, CONGRATULATION_TEXT_COLOR);
-      drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, playerColumnColor);
-      createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, CONGRATULATION_TEXT_COLOR);
+      createText(arrayNames[i], columnX, INITIAL_COLUM_Y + 20, CONGRATULATION_TEXT_COLOR);
+      drawColumn(columnX, 250, HISTOGRAM_COLUMN_WIDTH, -up, playerColumnColor);
+      createText(arrayTimes[i], columnX, 90, CONGRATULATION_TEXT_COLOR);
     }
   };
 
