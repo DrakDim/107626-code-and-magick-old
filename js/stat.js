@@ -25,7 +25,7 @@ window.renderStatistics = function (ctx, names, times) {
   var WIN_PLAYER_COLOR = 'rgba(255, 0, 0, 1)';
   var OTHER_PLAYER_COLOR = 'rgba(0, 26, 255, 1)';
 
-  var windowRect = function (windowX, windowY, offsetShadowX, offsetShadowY, width, height, color, colorShadow) {
+  var createRect = function (windowX, windowY, offsetShadowX, offsetShadowY, width, height, color, colorShadow) {
     ctx.fillstyle = colorShadow;
     ctx.fillRect(windowX + offsetShadowX, windowY + offsetShadowY, width, height);
 
@@ -34,14 +34,14 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.strokeRect(windowX, windowY, width, height);
   };
 
-  var textRect = function (text, x, y, size, font, color) {
+  var createText = function (text, x, y, size, font, color) {
     ctx.fillstyle = color;
     ctx.font = size + ' ' + font;
     ctx.fillText(text, x, y);
 
   };
 
-  var maxValueSerch = function (arrayTimes) {
+  var searchMaxValue = function (arrayTimes) {
     var maxValue = -1;
     for (var i = 0; i < arrayTimes.length; i++) {
       var minValue = arrayTimes[i];
@@ -52,28 +52,28 @@ window.renderStatistics = function (ctx, names, times) {
     return Math.round(maxValue);
   };
 
-  var drawColum = function (x, y, width, heigth, color) {
+  var drawColumn = function (x, y, width, heigth, color) {
     ctx.fillstyle = color;
     ctx.fillRect(x, y, width, heigth);
   };
 
   var drawHistogram = function (arrayTimes, arrayNames) {
-    var step = HISTOGRAM_WINDOW_HEIGHT / (maxValueSerch(arrayTimes) - 0);
+    var step = HISTOGRAM_WINDOW_HEIGHT / (searchMaxValue(arrayTimes) - 0);
     for (var i = 0; i < arrayTimes.length; i++) {
       var up = arrayTimes[i] * step;
       if (arrayNames[i] === 'Вы') {
-        textRect(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, TEXT_SIZE, TEXT_FONT, WIN_PLAYER_COLOR);
-        drawColum(150 + 90 * i, 250, 40, -up, WIN_PLAYER_COLOR);
-        textRect(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, TEXT_SIZE, TEXT_FONT, WIN_PLAYER_COLOR);
+        createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, TEXT_SIZE, TEXT_FONT, WIN_PLAYER_COLOR);
+        drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, WIN_PLAYER_COLOR);
+        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, TEXT_SIZE, TEXT_FONT, WIN_PLAYER_COLOR);
       } else {
-        textRect(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, TEXT_SIZE, TEXT_FONT, OTHER_PLAYER_COLOR);
-        drawColum(150 + 90 * i, 250, 40, -up, OTHER_PLAYER_COLOR);
-        textRect(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, TEXT_SIZE, TEXT_FONT, OTHER_PLAYER_COLOR);
+        createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, TEXT_SIZE, TEXT_FONT, OTHER_PLAYER_COLOR);
+        drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, OTHER_PLAYER_COLOR);
+        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, TEXT_SIZE, TEXT_FONT, OTHER_PLAYER_COLOR);
       }
     }
   };
 
-  windowRect(INITIAL_WINDOW_STATICTICS_X,
+  createRect(INITIAL_WINDOW_STATICTICS_X,
       INITIAL_WINDOW_STATICTICS_Y,
       OFFSET_SHADOW_WINDOW_STATISTIC_X,
       OFFSET_SHADOW_WINDOW_STATISTIC_Y,
@@ -82,8 +82,8 @@ window.renderStatistics = function (ctx, names, times) {
       WINDOW_STATICTICS_COLOR,
       SHADOW_WINDOW_STATISTIC_COLOR);
 
-  textRect('Ура вы победили!', 230, 40, TEXT_SIZE, TEXT_FONT, CONGRATULATION_TEXT_COLOR);
-  textRect('Список результатов:', 220, 60, TEXT_SIZE, TEXT_FONT, CONGRATULATION_TEXT_COLOR);
+  createText('Ура вы победили!', 230, 40, TEXT_SIZE, TEXT_FONT, CONGRATULATION_TEXT_COLOR);
+  createText('Список результатов:', 220, 60, TEXT_SIZE, TEXT_FONT, CONGRATULATION_TEXT_COLOR);
 
   drawHistogram(times, names);
 };
