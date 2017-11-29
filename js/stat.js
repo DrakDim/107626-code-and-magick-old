@@ -30,11 +30,10 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillRect(х, y, width, height);
   };
 
-  var createText = function (text, x, y, size, color) {
+  var createText = function (text, x, y, color) {
     ctx.fillStyle = color;
-    ctx.font = size + ' ' + TEXT_FONT;
+    ctx.font = TEXT_SIZE + ' ' + TEXT_FONT;
     ctx.fillText(text, x, y);
-
   };
 
   var searchMaxValue = function (arrayTimes) {
@@ -58,13 +57,13 @@ window.renderStatistics = function (ctx, names, times) {
     for (var i = 0; i < arrayTimes.length; i++) {
       var up = arrayTimes[i] * step;
       if (arrayNames[i] === 'Вы') {
-        createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, TEXT_SIZE, WIN_PLAYER_COLOR);
+        createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, WIN_PLAYER_COLOR);
         drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, WIN_PLAYER_COLOR);
-        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, TEXT_SIZE, WIN_PLAYER_COLOR);
+        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, WIN_PLAYER_COLOR);
       } else {
-        createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, TEXT_SIZE, OTHER_PLAYER_COLOR);
+        createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, OTHER_PLAYER_COLOR);
         drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, OTHER_PLAYER_COLOR);
-        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, TEXT_SIZE, OTHER_PLAYER_COLOR);
+        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, OTHER_PLAYER_COLOR);
       }
     }
   };
@@ -74,8 +73,8 @@ window.renderStatistics = function (ctx, names, times) {
   createRect(shadowX, shadowY, WINDOW_STATICTICS_WIDTH, WINDOW_STATICTICS_HEIGHT, SHADOW_WINDOW_STATISTIC_COLOR);
   createRect(INITIAL_WINDOW_STATICTICS_X, INITIAL_WINDOW_STATICTICS_Y, WINDOW_STATICTICS_WIDTH, WINDOW_STATICTICS_HEIGHT, WINDOW_STATICTICS_COLOR);
 
-  createText('Ура вы победили!', 230, 40, TEXT_SIZE, CONGRATULATION_TEXT_COLOR);
-  createText('Список результатов:', 220, 60, TEXT_SIZE, CONGRATULATION_TEXT_COLOR);
+  createText('Ура вы победили!', 230, 40, CONGRATULATION_TEXT_COLOR);
+  createText('Список результатов:', 220, 60, CONGRATULATION_TEXT_COLOR);
 
   drawHistogram(times, names);
 };
