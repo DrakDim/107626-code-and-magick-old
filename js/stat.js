@@ -20,8 +20,7 @@ window.renderStatistics = function (ctx, names, times) {
   var WINDOW_STATICTICS_COLOR = 'white';
   var SHADOW_WINDOW_STATISTIC_COLOR = 'rgba(0, 0, 0, 0.7)';
   var CONGRATULATION_TEXT_COLOR = '#000';
-  var TEXT_SIZE = '16px';
-  var TEXT_FONT = 'PT Mono';
+  var FONT = '16px PT Mono';
   var WIN_PLAYER_COLOR = 'rgba(255, 0, 0, 1)';
   var OTHER_PLAYER_COLOR = 'rgba(0, 26, 255, 1)';
 
@@ -32,7 +31,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   var createText = function (text, x, y, color) {
     ctx.fillStyle = color;
-    ctx.font = TEXT_SIZE + ' ' + TEXT_FONT;
+    ctx.font = FONT;
     ctx.fillText(text, x, y);
   };
 
