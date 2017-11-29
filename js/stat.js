@@ -26,12 +26,12 @@ window.renderStatistics = function (ctx, names, times) {
   var OTHER_PLAYER_COLOR = 'rgba(0, 26, 255, 1)';
 
   var createRect = function (х, y, width, height, color) {
-    ctx.fillstyle = color;
+    ctx.fillStyle = color;
     ctx.fillRect(х, y, width, height);
   };
 
   var createText = function (text, x, y, size, font, color) {
-    ctx.fillstyle = color;
+    ctx.fillStyle = color;
     ctx.font = size + ' ' + font;
     ctx.fillText(text, x, y);
 
@@ -49,7 +49,7 @@ window.renderStatistics = function (ctx, names, times) {
   };
 
   var drawColumn = function (x, y, width, heigth, color) {
-    ctx.fillstyle = color;
+    ctx.fillStyle = color;
     ctx.fillRect(x, y, width, heigth);
   };
 
