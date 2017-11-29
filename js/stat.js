@@ -12,7 +12,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   var INITIAL_COLUMN_Y = 250;
 
-  var COLUMN_X = 150;
+  var INITIAL_COLUMN_X = 150;
 
   var STATICTICS_WIDTH = 420;
   var STATICTICS_HEIGHT = 270;
@@ -67,7 +67,7 @@ window.renderStatistics = function (ctx, names, times) {
     for (var i = 0; i < arrayTimes.length; i++) {
       up = arrayTimes[i] * step;
       playerColumnColor = arrayNames[i] === 'Вы' ? WIN_PLAYER_COLOR : 'rgba(0, 26, 255, ' + randomAlpha() + ')';
-      columnX = COLUMN_X + i * (DISTANCE_BETWEEN_COLUMNS + HISTOGRAM_COLUMN_WIDTH);
+      columnX = INITIAL_COLUMN_X + i * (DISTANCE_BETWEEN_COLUMNS + HISTOGRAM_COLUMN_WIDTH);
 
       createText(arrayNames[i], columnX, INITIAL_COLUMN_Y + 20, DEFAULT_TEXT_COLOR);
       drawColumn(columnX, 250, HISTOGRAM_COLUMN_WIDTH, -up, playerColumnColor);
