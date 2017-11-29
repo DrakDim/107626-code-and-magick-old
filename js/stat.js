@@ -11,7 +11,6 @@ window.renderStatistics = function (ctx, names, times) {
   var SHADOW_Y = INITIAL_STATICTICS_Y + OFFSET_SHADOW_STATISTIC_Y;
 
   var INITIAL_COLUMN_Y = 250;
-
   var INITIAL_COLUMN_X = 150;
 
   var STATICTICS_WIDTH = 420;
@@ -47,12 +46,13 @@ window.renderStatistics = function (ctx, names, times) {
         maxValue = minValue;
       }
     }
-    return Math.round(maxValue);
+    return maxValue;
   };
 
   var drawColumn = function (x, y, width, heigth, color) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, width, heigth);
+    ctx.strokeRect(x, y, width, heigth);
   };
 
   var randomAlpha = function () {
@@ -60,18 +60,20 @@ window.renderStatistics = function (ctx, names, times) {
   };
 
   var drawHistogram = function (arrayTimes, arrayNames) {
-    var step = HISTOGRAM_HEIGHT / (searchMaxValue(arrayTimes) - 0);
-    var up;
+    var columnHeight;
+    var columnTextHeight;
     var playerColumnColor;
-    var columnX;
+    var ColumnX;
     for (var i = 0; i < arrayTimes.length; i++) {
-      up = arrayTimes[i] * step;
+      columnHeight = arrayTimes[i] * HISTOGRAM_HEIGHT / (searchMaxValue(arrayTimes) - 0);
+      columnTextHeight = STATICTICS_HEIGHT - (columnHeight + 30);
       playerColumnColor = arrayNames[i] === 'Вы' ? WIN_PLAYER_COLOR : 'rgba(0, 26, 255, ' + randomAlpha() + ')';
-      columnX = INITIAL_COLUMN_X + i * (DISTANCE_BETWEEN_COLUMNS + HISTOGRAM_COLUMN_WIDTH);
+      ColumnX = INITIAL_COLUMN_X + i * (DISTANCE_BETWEEN_COLUMNS + HISTOGRAM_COLUMN_WIDTH);
 
-      createText(arrayNames[i], columnX, INITIAL_COLUMN_Y + 20, DEFAULT_TEXT_COLOR);
-      drawColumn(columnX, 250, HISTOGRAM_COLUMN_WIDTH, -up, playerColumnColor);
-      createText(arrayTimes[i], columnX, 90, DEFAULT_TEXT_COLOR);
+      drawColumn(ColumnX, INITIAL_COLUMN_Y, HISTOGRAM_COLUMN_WIDTH, -columnHeight, playerColumnColor);
+
+      createText(arrayNames[i], ColumnX, INITIAL_COLUMN_Y + 20, DEFAULT_TEXT_COLOR);
+      createText(Math.round(arrayTimes[i]), ColumnX, columnTextHeight, DEFAULT_TEXT_COLOR);
     }
   };
 
