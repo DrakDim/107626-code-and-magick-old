@@ -59,10 +59,9 @@ window.renderStatistics = function (ctx, names, times) {
     var step = HISTOGRAM_WINDOW_HEIGHT / (searchMaxValue(arrayTimes) - 0);
     var up;
     var playerColumnColor;
-    var otherPlayerColumnColor = 'rgba(0, 26, 255, ' + randomAlpha() + ')';
     for (var i = 0; i < arrayTimes.length; i++) {
       up = arrayTimes[i] * step;
-      playerColumnColor = arrayNames[i] === 'Вы' ? WIN_PLAYER_COLOR : otherPlayerColumnColor;
+      playerColumnColor = arrayNames[i] === 'Вы' ? WIN_PLAYER_COLOR : 'rgba(0, 26, 255, ' + randomAlpha() + ')';
 
       createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, CONGRATULATION_TEXT_COLOR);
       drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, playerColumnColor);
