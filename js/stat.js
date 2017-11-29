@@ -60,11 +60,11 @@ window.renderStatistics = function (ctx, names, times) {
       if (arrayNames[i] === 'Вы') {
         createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, TEXT_SIZE, WIN_PLAYER_COLOR);
         drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, WIN_PLAYER_COLOR);
-        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, TEXT_SIZE, TEXT_FONT, WIN_PLAYER_COLOR);
+        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, TEXT_SIZE, WIN_PLAYER_COLOR);
       } else {
         createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, TEXT_SIZE, OTHER_PLAYER_COLOR);
         drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, OTHER_PLAYER_COLOR);
-        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, TEXT_SIZE, TEXT_FONT, OTHER_PLAYER_COLOR);
+        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, TEXT_SIZE, OTHER_PLAYER_COLOR);
       }
     }
   };
