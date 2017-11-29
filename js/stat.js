@@ -25,13 +25,9 @@ window.renderStatistics = function (ctx, names, times) {
   var WIN_PLAYER_COLOR = 'rgba(255, 0, 0, 1)';
   var OTHER_PLAYER_COLOR = 'rgba(0, 26, 255, 1)';
 
-  var createRect = function (windowX, windowY, offsetShadowX, offsetShadowY, width, height, color, colorShadow) {
-    ctx.fillstyle = colorShadow;
-    ctx.fillRect(windowX + offsetShadowX, windowY + offsetShadowY, width, height);
-
+  var createRect = function (х, y, width, height, color) {
     ctx.fillstyle = color;
-    ctx.fillRect(windowX, windowY, width, height);
-    ctx.strokeRect(windowX, windowY, width, height);
+    ctx.fillRect(х, y, width, height);
   };
 
   var createText = function (text, x, y, size, font, color) {
@@ -73,14 +69,10 @@ window.renderStatistics = function (ctx, names, times) {
     }
   };
 
-  createRect(INITIAL_WINDOW_STATICTICS_X,
-      INITIAL_WINDOW_STATICTICS_Y,
-      OFFSET_SHADOW_WINDOW_STATISTIC_X,
-      OFFSET_SHADOW_WINDOW_STATISTIC_Y,
-      WINDOW_STATICTICS_WIDTH,
-      WINDOW_STATICTICS_HEIGHT,
-      WINDOW_STATICTICS_COLOR,
-      SHADOW_WINDOW_STATISTIC_COLOR);
+  var shadowX = INITIAL_WINDOW_STATICTICS_X + OFFSET_SHADOW_WINDOW_STATISTIC_X;
+  var shadowY = INITIAL_WINDOW_STATICTICS_Y + OFFSET_SHADOW_WINDOW_STATISTIC_Y;
+  createRect(shadowX, shadowY, WINDOW_STATICTICS_WIDTH, WINDOW_STATICTICS_HEIGHT, SHADOW_WINDOW_STATISTIC_COLOR);
+  createRect(INITIAL_WINDOW_STATICTICS_X, INITIAL_WINDOW_STATICTICS_Y, WINDOW_STATICTICS_WIDTH, WINDOW_STATICTICS_HEIGHT, WINDOW_STATICTICS_COLOR);
 
   createText('Ура вы победили!', 230, 40, TEXT_SIZE, TEXT_FONT, CONGRATULATION_TEXT_COLOR);
   createText('Список результатов:', 220, 60, TEXT_SIZE, TEXT_FONT, CONGRATULATION_TEXT_COLOR);
