@@ -63,17 +63,17 @@ window.renderStatistics = function (ctx, names, times) {
     var columnHeight;
     var columnTextHeight;
     var playerColumnColor;
-    var ColumnX;
+    var columnX;
     for (var i = 0; i < arrayTimes.length; i++) {
-      columnHeight = arrayTimes[i] * HISTOGRAM_HEIGHT / (searchMaxValue(arrayTimes) - 0);
+      columnHeight = arrayTimes[i] * (HISTOGRAM_HEIGHT / (searchMaxValue(arrayTimes) - 0));
       columnTextHeight = STATICTICS_HEIGHT - (columnHeight + 30);
       playerColumnColor = arrayNames[i] === 'Вы' ? WIN_PLAYER_COLOR : 'rgba(0, 26, 255, ' + randomAlpha() + ')';
-      ColumnX = INITIAL_COLUMN_X + i * (DISTANCE_BETWEEN_COLUMNS + HISTOGRAM_COLUMN_WIDTH);
+      columnX = INITIAL_COLUMN_X + i * (DISTANCE_BETWEEN_COLUMNS + HISTOGRAM_COLUMN_WIDTH);
 
-      drawColumn(ColumnX, INITIAL_COLUMN_Y, HISTOGRAM_COLUMN_WIDTH, -columnHeight, playerColumnColor);
+      drawColumn(columnX, INITIAL_COLUMN_Y, HISTOGRAM_COLUMN_WIDTH, -columnHeight, playerColumnColor);
 
-      createText(arrayNames[i], ColumnX, INITIAL_COLUMN_Y + 20, DEFAULT_TEXT_COLOR);
-      createText(Math.round(arrayTimes[i]), ColumnX, columnTextHeight, DEFAULT_TEXT_COLOR);
+      createText(arrayNames[i], columnX, INITIAL_COLUMN_Y + 20, DEFAULT_TEXT_COLOR);
+      createText(Math.round(arrayTimes[i]), columnX, columnTextHeight, DEFAULT_TEXT_COLOR);
     }
   };
 
