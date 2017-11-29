@@ -54,17 +54,15 @@ window.renderStatistics = function (ctx, names, times) {
 
   var drawHistogram = function (arrayTimes, arrayNames) {
     var step = HISTOGRAM_WINDOW_HEIGHT / (searchMaxValue(arrayTimes) - 0);
+    var up;
+    var color;
     for (var i = 0; i < arrayTimes.length; i++) {
-      var up = arrayTimes[i] * step;
-      if (arrayNames[i] === 'Вы') {
-        createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, WIN_PLAYER_COLOR);
-        drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, WIN_PLAYER_COLOR);
-        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, WIN_PLAYER_COLOR);
-      } else {
-        createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, OTHER_PLAYER_COLOR);
-        drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, OTHER_PLAYER_COLOR);
-        createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, OTHER_PLAYER_COLOR);
-      }
+      up = arrayTimes[i] * step;
+      color = arrayNames[i] === 'Вы' ? WIN_PLAYER_COLOR : OTHER_PLAYER_COLOR;
+
+      createText(arrayNames[i], WIN_PLAYER_NAME_X + 93 * i, INITIAL_COLUM_Y + 20, CONGRATULATION_TEXT_COLOR);
+      drawColumn(150 + 90 * i, 250, HISTOGRAM_COLUMN_WIDTH, -up, color);
+      createText(arrayTimes[i], WIN_PLAYER_NAME_X + 93 * i, 90, CONGRATULATION_TEXT_COLOR);
     }
   };
 
