@@ -37,8 +37,9 @@ window.renderStatistics = function (ctx, names, times) {
 
   var searchMaxValue = function (arrayTimes) {
     var maxValue = -1;
+    var minValue = -1;
     for (var i = 0; i < arrayTimes.length; i++) {
-      var minValue = arrayTimes[i];
+      minValue = arrayTimes[i];
       if (minValue > maxValue) {
         maxValue = minValue;
       }
